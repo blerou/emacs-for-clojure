@@ -25,6 +25,9 @@
             (define-clojure-indent (fact 1))
             (define-clojure-indent (facts 1))))
 
+;; Enable auto-complete for clojure
+(add-hook 'clojure-mode-hook 'auto-complete-mode)
+
 ;;;;
 ;; Cider
 ;;;;
