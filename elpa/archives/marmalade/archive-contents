@@ -2594,7 +2594,7 @@
 		[(1 1 2)
 		 nil "hungry delete minor mode" single])
  (hugo .
-       [(0 1 1)
+       [(0 1 2)
 	nil "Helper functions for Hugo" single])
  (httpd .
 	[(1 0 1)
