@@ -3,17 +3,15 @@
 ;;;;
 
 ;; Define package repositories
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;; (require 'package)
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
 ;; (add-to-list 'package-archives
 ;;              '("tromey" . "http://tromey.com/elpa/") t)
 
-;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
-;;                          ("melpa" . "http://melpa-stable.milkbox.net/packages/")))
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 
 
 ;; Load and activate emacs packages. Do this first so that the
@@ -148,7 +146,7 @@
  '(fci-rule-color "#00346e")
  '(package-selected-packages
    (quote
-    (which-key clj-refactor with-namespace yaml-mode tagedit smex showkey rainbow-delimiters projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+    (dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey rainbow-delimiters projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

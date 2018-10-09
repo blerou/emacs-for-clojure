@@ -8,3 +8,7 @@ projectile-bookmarks.eld
 projectile.cache
 auto-save-list
 backups
+elpa/
+ac-comphist.dat
+network-security.data
+tramp
