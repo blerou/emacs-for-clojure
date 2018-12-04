@@ -29,7 +29,8 @@
 ;; manually with M-x package-install
 ;; Add in your own as you wish:
 (defvar my-packages
-  '(;; makes handling lisp expressions much, much easier
+  '(
+    ;; makes handling lisp expressions much, much easier
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
     paredit
 
@@ -47,7 +48,7 @@
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
-    ido-ubiquitous
+    ;;ido-ubiquitous
 
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
@@ -61,7 +62,8 @@
     tagedit
 
     ;; git integration
-    magit))
+    magit
+    ))
 
 ;; On OS X, an Emacs instance started from the graphical user
 ;; interface will have a different environment than a shell in a
@@ -120,7 +122,7 @@
 (load "misc.el")
 
 ;; For editing lisps
-(load "elisp-editing.el")
+;; (load "elisp-editing.el")
 
 ;; Langauage-specific
 ;; (load "setup-clojure.el")
@@ -154,13 +156,27 @@
 
 ;; # Ido
 
-(require 'ido)
-(ido-mode t)
+;; (require 'ido)
+;; (ido-mode t)
+
+;; # Elisp
+
+(add-hook 'emacs-lisp-mode-hook       'paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook 'paredit-mode)
+(add-hook 'ielm-mode-hook             'paredit-mode)
+(add-hook 'lisp-mode-hook             'paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'paredit-mode)
+(add-hook 'scheme-mode-hook           'paredit-mode)
+
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
+(add-hook 'ielm-mode-hook 'eldoc-mode)
 
 ;; # Clojure
 
 (add-hook 'clojure-mode-hook 'auto-complete-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'eldoc-mode)
 
 ;; This is useful for working with camel-case tokens, like names of Java classes (e.g. JavaClassName)
 (add-hook 'clojure-mode-hook 'subword-mode)
