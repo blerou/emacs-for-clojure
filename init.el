@@ -57,9 +57,6 @@
     ;; project navigation
     projectile
 
-    ;; colorful parenthesis matching
-    rainbow-delimiters
-
     ;; edit html tags like sexps
     tagedit
 
@@ -126,9 +123,10 @@
 (load "elisp-editing.el")
 
 ;; Langauage-specific
-(load "setup-clojure.el")
-(load "setup-js.el")
+;; (load "setup-clojure.el")
+;; (load "setup-js.el")
 (load "setup-python.el")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -146,7 +144,7 @@
  '(fci-rule-color "#00346e")
  '(package-selected-packages
    (quote
-    (dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey rainbow-delimiters projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+    (ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -154,6 +152,39 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; Ido mode
+;; # Ido
+
 (require 'ido)
 (ido-mode t)
+
+;; # Clojure
+
+(add-hook 'clojure-mode-hook 'auto-complete-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
+
+;; This is useful for working with camel-case tokens, like names of Java classes (e.g. JavaClassName)
+(add-hook 'clojure-mode-hook 'subword-mode)
+
+;; ## Cider
+
+;; go right to the REPL buffer when it's finished connecting
+(setq cider-repl-pop-to-buffer-on-connect t)
+
+;; When there's a cider error, show its buffer and switch to it
+(setq cider-show-error-buffer t)
+(setq cider-auto-select-error-buffer t)
+
+;; Where to store the cider history.
+(setq cider-repl-history-file "~/.emacs.d/cider-history")
+
+;; Wrap when navigating history.
+(setq cider-repl-wrap-history t)
+
+;; enable paredit in your REPL
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+;; Use clojure mode for other extensions
+(add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
