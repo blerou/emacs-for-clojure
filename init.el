@@ -230,7 +230,7 @@
  '(fci-rule-color "#00346e")
  '(package-selected-packages
    (quote
-    (racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+    (flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -260,6 +260,7 @@
 (add-hook 'clojure-mode-hook 'auto-complete-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'eldoc-mode)
+(add-hook 'clojure-mode-hook 'flycheck-mode)
 
 ;; This is useful for working with camel-case tokens, like names of Java classes (e.g. JavaClassName)
 (add-hook 'clojure-mode-hook 'subword-mode)
@@ -295,16 +296,24 @@
 
 ;; # Rust
 
+(add-hook 'rust-mode-hook 'auto-complete-mode)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'rust-mode-hook 'flycheck-mode)
+
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
-
 (setq rust-format-on-save t)
+
+;; (add-hook 'rust-mode-hook
+;;           (lambda ()
+;;             (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
 
 ;; code completion for rust
 (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
 (setq racer-rust-src-path "~/rust/src") ;; Rust source code PATH
 
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook 'racer-mode)
+(add-hook 'racer-mode-hook 'eldoc-mode)
+(add-hook 'racer-mode-hook 'company-mode)
+(add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
+
