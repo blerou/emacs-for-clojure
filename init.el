@@ -63,6 +63,9 @@
 
     ;; git integration
     magit
+
+    ;; rust
+    rust-mode
     ))
 
 ;; On OS X, an Emacs instance started from the graphical user
@@ -103,13 +106,85 @@
 ;; below, Emacs knows where to look for the corresponding file.
 (add-to-list 'load-path "~/.emacs.d/customizations")
 
-;; Sets up exec-path-from-shell so that Emacs will use the correct
-;; environment variables
-(load "shell-integration.el")
+
+;; ### SHell integration
+
+;; Sets up exec-path-from shell
+;; https://github.com/purcell/exec-path-from-shell
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-envs
+   '("PATH")))
+
+
+
+;; ### Navigation
 
 ;; These customizations make it easier for you to navigate files,
 ;; switch buffers, and choose options from the minibuffer.
-(load "navigation.el")
+
+
+;; "When several buffers visit identically-named files,
+;; Emacs must give the buffers distinct names. The usual method
+;; for making buffer names unique adds ‘<2>’, ‘<3>’, etc. to the end
+;; of the buffer names (all but one of them).
+;; The forward naming method includes part of the file's directory
+;; name at the beginning of the buffer name
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+;; Turn on recent file mode so that you can more easily switch to
+;; recently edited files when you first start emacs
+(setq recentf-save-file (concat user-emacs-directory ".recentf"))
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 40)
+
+
+;; ido-mode allows you to more easily navigate choices. For example,
+;; when you want to switch buffers, ido presents you with a list
+;; of buffers in the the mini-buffer. As you start to type a buffer's
+;; name, ido will narrow down the list of buffers to match the text
+;; you've typed in
+;; http://www.emacswiki.org/emacs/InteractivelyDoThings
+(ido-mode t)
+
+;; This allows partial matches, e.g. "tl" will match "Tyrion Lannister"
+(setq ido-enable-flex-matching t)
+
+;; Turn this behavior off because it's annoying
+(setq ido-use-filename-at-point nil)
+
+;; Don't try to match file across all "work" directories; only match files
+;; in the current directory displayed in the minibuffer
+(setq ido-auto-merge-work-directories-length -1)
+
+;; Includes buffer names of recently open files, even if they're not
+;; open now
+(setq ido-use-virtual-buffers t)
+
+;; This enables ido in all contexts where it could be useful, not just
+;; for selecting buffer and file names
+(ido-ubiquitous-mode 1)
+
+;; Shows a list of buffers
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+
+;; Enhances M-x to allow easier execution of commands. Provides
+;; a filterable list of possible commands in the minibuffer
+;; http://www.emacswiki.org/emacs/Smex
+(setq smex-save-file (concat user-emacs-directory ".smex-items"))
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+
+;; projectile everywhere!
+(projectile-global-mode)
+
+
+
+;; ### UI
 
 ;; These customizations change the way emacs looks and disable/enable
 ;; some user interface elements
@@ -118,16 +193,25 @@
 ;; These customizations make editing a bit nicer.
 (load "editing.el")
 
+
+
+;; ### Misc
+
 ;; Hard-to-categorize customizations
-(load "misc.el")
 
-;; For editing lisps
-;; (load "elisp-editing.el")
+;; Changes all yes/no questions to y/n type
+(fset 'yes-or-no-p 'y-or-n-p)
 
-;; Langauage-specific
-;; (load "setup-clojure.el")
-;; (load "setup-js.el")
-(load "setup-python.el")
+;; shell scripts
+(setq-default sh-basic-offset 2)
+(setq-default sh-indentation 2)
+
+;; No need for ~ files when editing
+(setq create-lockfiles nil)
+
+;; Go straight to scratch buffer on startup
+(setq inhibit-startup-message t)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -146,7 +230,7 @@
  '(fci-rule-color "#00346e")
  '(package-selected-packages
    (quote
-    (ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+    (rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -154,10 +238,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; # Ido
-
-;; (require 'ido)
-;; (ido-mode t)
+;; ### Languages
 
 ;; # Elisp
 
@@ -171,6 +252,8 @@
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
 (add-hook 'ielm-mode-hook 'eldoc-mode)
+
+(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 
 ;; # Clojure
 
@@ -204,3 +287,14 @@
 (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
+
+;; # PYTHON
+
+(add-hook 'python-mode-hook 'auto-complete-mode)
+(add-hook 'python-mode-hook 'eldoc-mode)
+
+;; # Rust
+
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
+(setq rust-format-on-save t)
