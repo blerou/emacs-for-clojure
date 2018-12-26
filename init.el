@@ -230,7 +230,7 @@
  '(fci-rule-color "#00346e")
  '(package-selected-packages
    (quote
-    (flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+    (flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -253,11 +253,11 @@
 (add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
 (add-hook 'ielm-mode-hook 'eldoc-mode)
 
-(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+(add-hook 'emacs-lisp-mode-hook 'company-mode)
 
 ;; # Clojure
 
-(add-hook 'clojure-mode-hook 'auto-complete-mode)
+(add-hook 'clojure-mode-hook 'company-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'eldoc-mode)
 (add-hook 'clojure-mode-hook 'flycheck-mode)
@@ -291,12 +291,12 @@
 
 ;; # PYTHON
 
-(add-hook 'python-mode-hook 'auto-complete-mode)
+(add-hook 'python-mode-hook 'company-mode)
 (add-hook 'python-mode-hook 'eldoc-mode)
 
 ;; # Rust
 
-(add-hook 'rust-mode-hook 'auto-complete-mode)
+(add-hook 'rust-mode-hook 'company-mode)
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'rust-mode-hook 'flycheck-mode)
 
@@ -317,3 +317,7 @@
 (add-hook 'racer-mode-hook 'company-mode)
 (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
 
+;; # Java
+
+(add-hook 'java-mode-hook 'company-mode)
+(add-hook 'java-mode-hook 'eldoc-mode)
