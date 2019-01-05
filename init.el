@@ -182,7 +182,10 @@
 ;; projectile everywhere!
 (projectile-global-mode)
 
+;; #### custom navigation (mostly based on Idea bindings)
 
+;; macOS specific stuff
+(global-set-key (kbd "s-e") 'ido-switch-buffer)
 
 ;; ### UI
 
@@ -262,6 +265,10 @@
 (add-hook 'clojure-mode-hook 'eldoc-mode)
 (add-hook 'clojure-mode-hook 'flycheck-mode)
 (add-hook 'clojure-mode-hook 'dumb-jump-mode)
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (local-set-key (kbd "s-<right>") 'paredit-forward)
+            (local-set-key (kbd "s-<left>") 'paredit-backward)))
 
 ;; This is useful for working with camel-case tokens, like names of Java classes (e.g. JavaClassName)
 (add-hook 'clojure-mode-hook 'subword-mode)
