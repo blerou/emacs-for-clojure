@@ -251,6 +251,10 @@
 (setq company-dabbrev-downcase 0)
 (setq company-idle-delay 0)
 
+;; ## dired
+
+(put 'dired-find-alternate-file 'disabled nil)
+
 ;; ### Languages
 
 ;; # Elisp
@@ -268,9 +272,12 @@
 
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
 
+(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+
 ;; # Clojure
 
 (add-hook 'clojure-mode-hook 'company-mode)
+(add-hook 'clojure-mode-hook 'auto-complete-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'eldoc-mode)
 (add-hook 'clojure-mode-hook 'flycheck-mode)
@@ -318,12 +325,14 @@
 ;; # PYTHON
 
 (add-hook 'python-mode-hook 'company-mode)
+(add-hook 'python-mode-hook 'auto-complete-mode)
 (add-hook 'python-mode-hook 'eldoc-mode)
 (add-hook 'python-mode-hook 'dumb-jump-mode)
 
 ;; # Rust
 
 (add-hook 'rust-mode-hook 'company-mode)
+(add-hook 'rust-mode-hook 'auto-complete-mode)
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'rust-mode-hook 'flycheck-mode)
 
@@ -347,5 +356,13 @@
 ;; # Java
 
 (add-hook 'java-mode-hook 'company-mode)
+(add-hook 'java-mode-hook 'auto-complete-mode)
 (add-hook 'java-mode-hook 'eldoc-mode)
 (add-hook 'java-mode-hook 'dumb-jump-mode)
+
+;; # Ruby
+
+(add-hook 'ruby-mode-hook 'company-mode)
+(add-hook 'ruby-mode-hook 'auto-complete-mode)
+(add-hook 'ruby-mode-hook 'eldoc-mode)
+(add-hook 'ruby-mode-hook 'dumb-jump-mode)
