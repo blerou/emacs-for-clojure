@@ -245,7 +245,7 @@
  )
 
 (set-face-attribute 'default nil :height 150)
-(setq-default tab-width 4xs)
+(setq-default tab-width 4)
 
 ;; ## company-mode
 
