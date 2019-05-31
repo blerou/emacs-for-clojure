@@ -64,8 +64,7 @@
     ;; git integration
     magit
 
-    ;; rust
-    rust-mode
+    graphviz-dot-mode
     ))
 
 ;; On OS X, an Emacs instance started from the graphical user
