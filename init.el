@@ -182,6 +182,9 @@
 ;; projectile everywhere!
 (projectile-global-mode)
 
+;; expand region
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 ;; #### custom navigation (mostly based on Idea bindings)
 
 ;; macOS specific stuff
