@@ -1,5 +1,5 @@
 .smex-items
-*~$
+*~
 places
 .recentf
 ido.last
@@ -12,3 +12,6 @@ elpa/
 ac-comphist.dat
 network-security.data
 tramp
+transient/
+request/
+bookmarks
