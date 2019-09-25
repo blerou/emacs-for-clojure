@@ -3,12 +3,6 @@
 ;;;;
 
 ;; Define package repositories
-;; (require 'package)
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
-;; (add-to-list 'package-archives
-;;              '("tromey" . "http://tromey.com/elpa/") t)
-
 (require 'package)
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
@@ -16,6 +10,7 @@
 
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 (add-to-list 'package-pinned-packages '(ido-completing-read+ . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(projectile . "melpa-stable") t)
 
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
@@ -245,7 +240,7 @@
  '(fci-rule-color "#00346e")
  '(package-selected-packages
    (quote
-    (editorconfig-generate editorconfig evil expand-region ein ensime groovy-mode gradle-mode scala-mode company-terraform terraform-mode lua-mode eyebrowse flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+    (yaml-tomato editorconfig-generate editorconfig evil expand-region ein ensime groovy-mode gradle-mode scala-mode company-terraform terraform-mode lua-mode eyebrowse flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
