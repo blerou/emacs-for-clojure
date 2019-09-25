@@ -55,6 +55,7 @@
 
     ;; project navigation
     projectile
+    ag
 
     ;; edit html tags like sexps
     tagedit
