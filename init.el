@@ -67,6 +67,11 @@
 
     which-key
     company
+
+
+    ;; dev tools
+    terraform-mode
+    company-terraform
     ))
 
 ;; On OS X, an Emacs instance started from the graphical user
@@ -254,7 +259,8 @@
 
 ;; ## company-mode
 
-(setq company-dabbrev-downcase 0)
+;(setq company-dabbrev-downcase 0)
+(setq company-dabbrev-downcase nil)
 (setq company-idle-delay 0)
 (add-hook 'after-init-hook 'global-company-mode)
 
