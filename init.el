@@ -46,7 +46,11 @@
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
-    ido-completing-read+
+    ;; i mean ... ivy and pals
+    ;ido-completing-read+
+    ivy
+    counsel
+    swiper
 
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
@@ -148,32 +152,56 @@
 (setq recentf-max-menu-items 40)
 
 
-;; ido-mode allows you to more easily navigate choices. For example,
-;; when you want to switch buffers, ido presents you with a list
-;; of buffers in the the mini-buffer. As you start to type a buffer's
-;; name, ido will narrow down the list of buffers to match the text
-;; you've typed in
-;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-(ido-mode 1)
+;; Switch to ivy from ido
 
-;; This allows partial matches, e.g. "tl" will match "Tyrion Lannister"
-(setq ido-enable-flex-matching t)
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
 
-;; Turn this behavior off because it's annoying
-(setq ido-use-filename-at-point nil)
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
-;; Don't try to match file across all "work" directories; only match files
-;; in the current directory displayed in the minibuffer
-(setq ido-auto-merge-work-directories-length -1)
+(global-set-key (kbd "C-c c") 'counsel-compile)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
 
-;; Includes buffer names of recently open files, even if they're not
-;; open now
-(setq ido-use-virtual-buffers t)
+;; ;; ido-mode allows you to more easily navigate choices. For example,
+;; ;; when you want to switch buffers, ido presents you with a list
+;; ;; of buffers in the the mini-buffer. As you start to type a buffer's
+;; ;; name, ido will narrow down the list of buffers to match the text
+;; ;; you've typed in
+;; ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
+;; (ido-mode 1)
 
-;; This enables ido in all contexts where it could be useful, not just
-;; for selecting buffer and file names
-(ido-ubiquitous-mode 1)
-(ido-everywhere 1)
+;; ;; This allows partial matches, e.g. "tl" will match "Tyrion Lannister"
+;; (setq ido-enable-flex-matching t)
+
+;; ;; Turn this behavior off because it's annoying
+;; (setq ido-use-filename-at-point nil)
+
+;; ;; Don't try to match file across all "work" directories; only match files
+;; ;; in the current directory displayed in the minibuffer
+;; (setq ido-auto-merge-work-directories-length -1)
+
+;; ;; Includes buffer names of recently open files, even if they're not
+;; ;; open now
+;; (setq ido-use-virtual-buffers t)
+
+;; ;; This enables ido in all contexts where it could be useful, not just
+;; ;; for selecting buffer and file names
+;; (ido-ubiquitous-mode 1)
+;; (ido-everywhere 1)
+
+
+
 
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -246,7 +274,7 @@
  '(fci-rule-color "#00346e")
  '(package-selected-packages
    (quote
-    (yaml-tomato editorconfig-generate editorconfig evil expand-region ein ensime groovy-mode gradle-mode scala-mode company-terraform terraform-mode lua-mode eyebrowse flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+    (cider clj-refactor graphviz-dot-mode counsel counsel-etags counsel-gtags ivy ivy-clojuredocs ivy-dired-history ivy-explorer yaml-tomato editorconfig-generate editorconfig evil expand-region ein ensime groovy-mode gradle-mode scala-mode company-terraform terraform-mode lua-mode eyebrowse flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
