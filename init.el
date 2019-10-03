@@ -31,6 +31,7 @@
     ;; makes handling lisp expressions much, much easier
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
     paredit
+    rainbow-delimiters
 
     ;; key bindings and code colorization for Clojure
     ;; https://github.com/clojure-emacs/clojure-mode
@@ -127,7 +128,6 @@
    '("PATH")))
 
 
-
 ;; ### Navigation
 
 ;; These customizations make it easier for you to navigate files,
@@ -158,7 +158,9 @@
 (setq ivy-use-virtual-buffers t)
 (setq ivy-count-format "(%d/%d) ")
 
+
 (global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-r") 'swiper-backward)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
@@ -172,6 +174,8 @@
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
+
+
 
 ;; ;; ido-mode allows you to more easily navigate choices. For example,
 ;; ;; when you want to switch buffers, ido presents you with a list
@@ -223,7 +227,7 @@
 ;; #### custom navigation (mostly based on Idea bindings)
 
 ;; macOS specific stuff
-(global-set-key (kbd "s-e") 'ido-switch-buffer)
+(global-set-key (kbd "s-e") 'ivy-switch-buffer)
 
 ;; ### UI
 
@@ -231,9 +235,22 @@
 ;; some user interface elements
 (load "ui.el")
 
+;; ### Editing
+
 ;; These customizations make editing a bit nicer.
 (load "editing.el")
 
+;; Highlights matching parenthesis
+(show-paren-mode 1)
+
+;; Highlight current line
+(global-hl-line-mode 1)
+
+;; Don't use hard tabs
+(setq-default indent-tabs-mode nil)
+
+;; yay rainbows!
+;(global-rainbow-delimiters-mode t)
 
 
 ;; ### Misc
@@ -284,6 +301,10 @@
 
 (set-face-attribute 'default nil :height 150)
 (setq-default tab-width 4)
+
+;; ## magit
+
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; ## company-mode
 
