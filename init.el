@@ -72,7 +72,7 @@
 
     which-key
     company
-
+    evil
 
     ;; dev tools
     terraform-mode
@@ -129,6 +129,9 @@
 
 
 ;; ### Navigation
+
+;; evil mode
+(evil-mode 1)
 
 ;; These customizations make it easier for you to navigate files,
 ;; switch buffers, and choose options from the minibuffer.
@@ -219,7 +222,10 @@
 (global-set-key (kbd "M-x") 'smex)
 
 ;; projectile everywhere!
-(projectile-global-mode)
+;(projectile-global-mode)
+(require 'projectile)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(projectile-mode 1)
 
 ;; expand region
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -291,7 +297,7 @@
  '(fci-rule-color "#00346e")
  '(package-selected-packages
    (quote
-    (cider clj-refactor graphviz-dot-mode counsel counsel-etags counsel-gtags ivy ivy-clojuredocs ivy-dired-history ivy-explorer yaml-tomato editorconfig-generate editorconfig evil expand-region ein ensime groovy-mode gradle-mode scala-mode company-terraform terraform-mode lua-mode eyebrowse flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+    (pcre2el cider clj-refactor graphviz-dot-mode counsel counsel-etags counsel-gtags ivy ivy-clojuredocs ivy-dired-history ivy-explorer yaml-tomato editorconfig-generate editorconfig evil expand-region ein ensime groovy-mode gradle-mode scala-mode company-terraform terraform-mode lua-mode eyebrowse flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
