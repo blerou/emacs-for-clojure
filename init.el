@@ -290,14 +290,12 @@
  '(ansi-color-names-vector
    (vector "#ffffff" "#ff9da4" "#d1f1a9" "#ffeead" "#bbdaff" "#ebbbff" "#99ffff" "#002451"))
  '(coffee-tab-width 2)
- '(custom-enabled-themes (quote (mywombat)))
+ '(custom-enabled-themes '(mywombat))
  '(custom-safe-themes
-   (quote
-    ("8caace45ce85471bcd3ca0a3d14a1f537a487aa808b28b579d3617dd9d5160d9" "c9008b163b66f6d2d174bccbfe0823eb2c4267d7e3a4d7490fdd3d2729c6baaa" "9e54a6ac0051987b4296e9276eecc5dfb67fdcd620191ee553f40a9b6d943e78" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "52588047a0fe3727e3cd8a90e76d7f078c9bd62c0b246324e557dfa5112e0d0c" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "cf08ae4c26cacce2eebff39d129ea0a21c9d7bf70ea9b945588c1c66392578d1" default)))
+   '("8caace45ce85471bcd3ca0a3d14a1f537a487aa808b28b579d3617dd9d5160d9" "c9008b163b66f6d2d174bccbfe0823eb2c4267d7e3a4d7490fdd3d2729c6baaa" "9e54a6ac0051987b4296e9276eecc5dfb67fdcd620191ee553f40a9b6d943e78" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "52588047a0fe3727e3cd8a90e76d7f078c9bd62c0b246324e557dfa5112e0d0c" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "cf08ae4c26cacce2eebff39d129ea0a21c9d7bf70ea9b945588c1c66392578d1" default))
  '(fci-rule-color "#00346e")
  '(package-selected-packages
-   (quote
-    (pcre2el cider clj-refactor graphviz-dot-mode counsel counsel-etags counsel-gtags ivy ivy-clojuredocs ivy-dired-history ivy-explorer yaml-tomato editorconfig-generate editorconfig evil expand-region ein ensime groovy-mode gradle-mode scala-mode company-terraform terraform-mode lua-mode eyebrowse flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider))))
+   '(minizinc-mode use-package lsp-mode sbt-mode pcre2el cider clj-refactor graphviz-dot-mode counsel counsel-etags counsel-gtags ivy ivy-clojuredocs ivy-dired-history ivy-explorer yaml-tomato editorconfig-generate editorconfig evil expand-region ein ensime groovy-mode gradle-mode scala-mode company-terraform terraform-mode lua-mode eyebrowse flycheck-joker flycheck-clojure flycheck-rust racer cargo rust-playground rust-mode ag php-mode dumb-jump company which-key with-namespace yaml-mode tagedit smex showkey projectile paredit markdown-mode magit jedi ido-ubiquitous go-mode function-args find-file-in-repository exec-path-from-shell clojure-mode-extra-font-locking cider-eval-sexp-fu autopair ac-cider)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
